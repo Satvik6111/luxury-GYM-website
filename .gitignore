@@ -10,3 +10,4 @@ next-env.d.ts
 _21st-fetch/
 __pycache__/
 *.pyc
+.vercel

@@ -202,7 +202,9 @@ export function SiteFooter() {
           >
             Private Consultation
           </Link>
-          <span className="mt-4 text-bronze">By request only</span>
+          <span className="mt-4 max-w-xs text-right leading-relaxed text-bronze md:text-right">
+            Every request receives a personal reply within 24 hours.
+          </span>
         </div>
       </div>
       <div className="border-t border-[rgba(240,235,227,0.04)] px-5 py-6 text-center text-[0.62rem] uppercase tracking-[0.24em] text-[rgba(196,189,178,0.45)] md:px-8">

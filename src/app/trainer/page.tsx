@@ -7,21 +7,32 @@ import { NoisePatternCard, NoisePatternCardBody } from "@/components/ui/noise-ca
 import { CustomCursor } from "@/components/cursor";
 import { LeatherButton } from "@/components/ui/leather-button";
 
-const credentials = [
-  { label: "Years in private practice", value: "14+" },
-  { label: "Members coached 1-on-1", value: "120" },
-  { label: "Average member tenure", value: "3.2 yrs" },
-  { label: "Certifications held", value: "6" },
-];
+const trainerProfile = {
+  name: "",
+  title: "Head Trainer · Limitless",
+  quote:
+    "My members don\u2019t need another person who counts reps. They need someone who takes responsibility for the outcome \u2014 and has the skill to earn that trust.",
+  bio: [
+    "Fourteen years in private practice. Background in strength & conditioning, corrective exercise, and nutrition \u2014 built for people who run companies, practices, and families, and refuse to treat their health like a hobby.",
+    "Every Limitless member works with the same trainer. No rotations. No \u201Cfill-ins.\u201D If you booked 7am, your trainer is there at 6:55 \u2014 knowing your shoulder, your sleep, and your schedule.",
+  ],
+  credentials: [
+    { label: "Years in private practice", value: "14+" },
+    { label: "Members coached 1-on-1", value: "120" },
+    { label: "Average member tenure", value: "3.2 yrs" },
+    { label: "Certifications held", value: "6" },
+  ],
+  certs: [
+    "NASM Certified Personal Trainer",
+    "Precision Nutrition Level 2",
+    "FMS Level 2 — Functional Movement",
+    "PreScript Level 1 — Corrective Exercise",
+    "TRX Suspension Training Specialist",
+    "CPR / AED / First Aid (current)",
+  ],
+};
 
-const certList = [
-  "NASM Certified Personal Trainer",
-  "Precision Nutrition Level 2",
-  "FMS Level 2 — Functional Movement",
-  "PreScript Level 1 — Corrective Exercise",
-  "TRX Suspension Training Specialist",
-  "CPR / AED / First Aid (current)",
-];
+const { credentials, certs: certList } = trainerProfile;
 
 export default function TrainerPage() {
   return (
@@ -69,18 +80,16 @@ export default function TrainerPage() {
                       <span className="font-display text-[6rem] leading-none text-bronze-bright md:text-[8rem]">
                         LF
                       </span>
-                      <span className="label">Portrait placeholder</span>
-                      <span className="max-w-[70%] text-center text-[0.68rem] leading-relaxed text-parchment-dim">
-                        Drop a real trainer photograph here — vertical, low-key lighting,
-                        private-room setting.
+                      <span className="label">
+                        {trainerProfile.name || "Portrait"}
                       </span>
                     </div>
                     <div className="absolute inset-x-0 bottom-0 border-t border-[rgba(240,235,227,0.08)] bg-[rgba(11,12,14,0.85)] p-5 backdrop-blur-sm">
                       <p className="font-display text-2xl text-parchment">
-                        Adrian Vale
+                        {trainerProfile.name || "The Trainer"}
                       </p>
                       <p className="mt-1 text-[0.68rem] uppercase tracking-[0.2em] text-bronze">
-                        Head Trainer · Limitless
+                        {trainerProfile.title}
                       </p>
                     </div>
                   </div>
@@ -91,25 +100,15 @@ export default function TrainerPage() {
                 <Reveal>
                   <p className="label">Philosophy</p>
                   <blockquote className="mt-5 font-display text-[clamp(1.5rem,3vw,2.35rem)] leading-snug text-parchment">
-                    &ldquo;My members don&rsquo;t need another person who counts reps.
-                    They need someone who takes responsibility for the outcome —
-                    and has the skill to earn that trust.&rdquo;
+                    &ldquo;{trainerProfile.quote}&rdquo;
                   </blockquote>
                 </Reveal>
 
                 <Reveal delay={0.12}>
                   <div className="mt-8 space-y-4 text-sm leading-relaxed text-parchment-dim">
-                    <p>
-                      Fourteen years in private practice. Background in strength &
-                      conditioning, corrective exercise, and nutrition — built for people
-                      who run companies, practices, and families, and refuse to treat
-                      their health like a hobby.
-                    </p>
-                    <p>
-                      Every Limitless member works with the same trainer. No rotations.
-                      No &ldquo;fill-ins.&rdquo; If you booked 7am, your trainer is there
-                      at 6:55 — knowing your shoulder, your sleep, and your schedule.
-                    </p>
+                    {trainerProfile.bio.map((p) => (
+                      <p key={p.slice(0, 24)}>{p}</p>
+                    ))}
                   </div>
                 </Reveal>
 
@@ -136,6 +135,12 @@ export default function TrainerPage() {
         <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
             <SectionLabel index="02">Credentials</SectionLabel>
+            <Reveal>
+              <p className="mb-8 max-w-2xl text-sm leading-relaxed text-parchment-dim">
+                Screened before we load you. Current in CPR/AED. Works alongside
+                your physician.
+              </p>
+            </Reveal>
             <div className="grid gap-10 md:grid-cols-2">
               <Reveal>
                 <ul className="divide-y divide-[rgba(240,235,227,0.07)] border-y border-[rgba(240,235,227,0.07)]">

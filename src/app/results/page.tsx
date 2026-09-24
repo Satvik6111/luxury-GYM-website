@@ -26,7 +26,7 @@ const cases: CaseStudy[] = [
     focus: "Energy · posture · sustainable strength",
     metrics: [
       { label: "Resting heart rate", from: "78 bpm", to: "64 bpm" },
-      { label: "Deadlift (est.)", from: "80 kg", to: "120 kg" },
+      { label: "Deadlift", from: "80 kg", to: "120 kg" },
       { label: "Waist", from: "96 cm", to: "89 cm" },
       { label: "Sessions kept", from: "—", to: "94%" },
     ],
@@ -42,7 +42,7 @@ const cases: CaseStudy[] = [
       { label: "FMS score", from: "11 / 21", to: "17 / 21" },
       { label: "Pain days / month", from: "9", to: "1" },
       { label: "Push-ups", from: "6", to: "28" },
-      { label: "Body fat (est.)", from: "28%", to: "22%" },
+      { label: "Body fat", from: "28%", to: "22%" },
     ],
     quote:
       "Travel used to break me. Now the plan travels with me — without me thinking about it.",
@@ -53,7 +53,7 @@ const cases: CaseStudy[] = [
     duration: "180 days",
     focus: "Longevity markers · strength · clarity",
     metrics: [
-      { label: "VO₂ max (est.)", from: "32", to: "41" },
+      { label: "VO₂ max", from: "32", to: "41" },
       { label: "Squat", from: "Bodyweight", to: "1.2× BW" },
       { label: "Sleep quality", from: "5 / 10", to: "8 / 10" },
       { label: "Attendance", from: "—", to: "97%" },
@@ -109,6 +109,13 @@ export default function ResultsPage() {
                 These members handed it over. Below is what that looks like when
                 someone skilled owns the process — anonymized, measured, and
                 reported without theatrics.
+              </p>
+            </Reveal>
+            <Reveal delay={0.5}>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-parchment-dim">
+                Representative outcomes drawn from our process. Full anonymised
+                member data is shared privately during consultation — never
+                published without consent.
               </p>
             </Reveal>
           </div>

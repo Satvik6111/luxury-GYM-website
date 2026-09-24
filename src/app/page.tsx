@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteNav, SiteFooter } from "@/components/chrome";
 import { Reveal, LineMask, SectionLabel } from "@/components/motion";
 import { ConsultationForm } from "@/components/consultation-form";
+import { Faq } from "@/components/faq";
 import { NoisePatternCard, NoisePatternCardBody } from "@/components/ui/noise-card";
 import { LeatherButton } from "@/components/ui/leather-button";
 import { StardustButton } from "@/components/ui/stardust-button";
@@ -37,6 +38,13 @@ const standards = [
     title: "Program changes without asking",
     body: "When something shifts — travel, sleep, a stiff shoulder — the plan updates before you notice.",
   },
+];
+
+const promises = [
+  "Answered in 24 hours",
+  "Sessions begin on time",
+  "No lock-in",
+  "Handled personally",
 ];
 
 const experience = [
@@ -233,6 +241,22 @@ export default function HomePage() {
                 </Reveal>
               ))}
             </div>
+
+            <Reveal delay={0.1}>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-md border border-[rgba(154,139,114,0.28)] bg-[#121417] px-6 py-5">
+                {promises.map((p) => (
+                  <span
+                    key={p}
+                    className="flex items-center gap-3 text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim"
+                  >
+                    <span className="text-bronze-bright" aria-hidden>
+                      —
+                    </span>
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -276,6 +300,12 @@ export default function HomePage() {
         <section className="relative border-t border-[rgba(240,235,227,0.06)] py-24 md:py-36">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
             <SectionLabel index="05">The Filter</SectionLabel>
+            <Reveal>
+              <p className="mb-10 max-w-2xl text-sm leading-relaxed text-parchment-dim md:text-base">
+                Built for founders, physicians, partners, and the next generation
+                of them — people who value privacy and results over a scene.
+              </p>
+            </Reveal>
             <div className="grid gap-10 md:grid-cols-2 md:gap-16">
               <Reveal>
                 <div className="rounded-md border border-[rgba(154,139,114,0.35)] bg-[#121417] p-7 md:p-9">
@@ -380,6 +410,30 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section className="relative border-t border-[rgba(240,235,227,0.06)] py-24 md:py-36">
+          <div className="mx-auto max-w-6xl px-5 md:px-8">
+            <SectionLabel index="06">Questions</SectionLabel>
+            <div className="mb-12 max-w-2xl">
+              <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] leading-tight text-parchment">
+                Before you ask.
+                <span className="block italic text-bronze-bright">
+                  Answered plainly.
+                </span>
+              </h2>
+              <Reveal delay={0.12}>
+                <p className="mt-5 text-sm leading-relaxed text-parchment-dim md:text-base">
+                  No sales sequence. No fine print. The seven things every serious
+                  buyer wants to know — said once, clearly.
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.15}>
+              <Faq />
+            </Reveal>
+          </div>
+        </section>
+
         {/* CONSULTATION */}
         <section
           id="consult"
@@ -387,7 +441,7 @@ export default function HomePage() {
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(154,139,114,0.08),transparent_55%)]" />
           <div className="relative mx-auto max-w-6xl px-5 md:px-8">
-            <SectionLabel index="06">Private Consultation</SectionLabel>
+            <SectionLabel index="07">Private Consultation</SectionLabel>
             <div className="mb-12 max-w-2xl">
               <h2 className="font-display text-[clamp(2rem,4.5vw,3.75rem)] leading-tight text-parchment">
                 No forms that feel like
@@ -397,8 +451,14 @@ export default function HomePage() {
               </h2>
               <Reveal delay={0.12}>
                 <p className="mt-5 text-sm leading-relaxed text-parchment-dim md:text-base">
-                  Four quiet questions. A personal response within 24 hours. No prices
-                  on this page — because the conversation comes first.
+                  Four quiet questions. A personal response within 24 hours. No
+                  prices on this page — because the conversation comes first.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-4 text-sm leading-relaxed text-parchment-dim">
+                  One-to-one only. Identities, schedules, and results are never
+                  shared.
                 </p>
               </Reveal>
             </div>

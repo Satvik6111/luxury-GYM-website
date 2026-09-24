@@ -313,6 +313,10 @@ export function ConsultationForm() {
           </StardustButton>
         )}
       </div>
+
+      <p className="mt-6 text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim/70">
+        Your details are never shared or sold.
+      </p>
     </div>
   );
 }
