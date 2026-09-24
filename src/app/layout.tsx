@@ -50,11 +50,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${cormorant.variable} ${montserrat.variable}`}
+    >
       <body className="grain antialiased">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "HealthClub",
+              name: "Limitless Fitness",
+              url: "https://limitless.fitness",
+              description:
+                "A private fitness membership where your trainer owns the plan, the sessions, and the results.",
+            }),
+          }}
+        />
         {children}
       </body>
     </html>

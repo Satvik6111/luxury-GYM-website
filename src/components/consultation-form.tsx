@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlassRadioGroup } from "@/components/ui/glass-radio-group";
 import { LeatherButton } from "@/components/ui/leather-button";
@@ -53,7 +53,11 @@ export function ConsultationForm() {
     (step === 3 && !!form.failure) ||
     (step === 4 && !!form.time);
 
+  const submitting = useRef(false);
+
   const submit = async () => {
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus("loading");
     setErrorMsg("");
     try {
@@ -70,6 +74,7 @@ export function ConsultationForm() {
       }
       setStatus("done");
     } catch (e) {
+      submitting.current = false;
       setStatus("error");
       setErrorMsg(
         e instanceof Error
@@ -80,6 +85,8 @@ export function ConsultationForm() {
   };
 
   const next = async () => {
+    if (submitting.current || status === "loading" || !canNext) return;
+    setErrorMsg("");
     if (step < steps.length - 1) {
       setStep(step + 1);
       return;
@@ -110,7 +117,14 @@ export function ConsultationForm() {
   }
 
   return (
-    <div className="rounded-md border border-[rgba(240,235,227,0.08)] bg-[#121417] p-6 md:p-10">
+    <form
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        void next();
+      }}
+      className="rounded-md border border-[rgba(240,235,227,0.08)] bg-[#121417] p-6 md:p-10"
+    >
       <div className="mb-8 flex items-center justify-between">
         <span className="label">
           {String(step + 1).padStart(2, "0")} — {steps[step]}
@@ -136,7 +150,7 @@ export function ConsultationForm() {
         />
       </div>
 
-      {status === "error" && (
+      {errorMsg && (
         <div
           role="alert"
           tabIndex={-1}
@@ -168,6 +182,7 @@ export function ConsultationForm() {
                 type="text"
                 autoComplete="name"
                 required
+                maxLength={120}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 onBlur={(e) => {
@@ -202,6 +217,7 @@ export function ConsultationForm() {
                 autoComplete="email"
                 required
                 inputMode="email"
+                maxLength={254}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 onBlur={(e) => {
@@ -286,6 +302,10 @@ export function ConsultationForm() {
         </motion.div>
       </AnimatePresence>
 
+      <button type="submit" tabIndex={-1} aria-hidden className="sr-only">
+        Submit
+      </button>
+
       <div className="mt-10 flex flex-wrap items-center gap-4">
         {step > 0 && (
           <button
@@ -305,7 +325,6 @@ export function ConsultationForm() {
           </LeatherButton>
         ) : (
           <StardustButton
-            onClick={next}
             disabled={!canNext || status === "loading"}
             type="submit"
           >
@@ -317,6 +336,6 @@ export function ConsultationForm() {
       <p className="mt-6 text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim/70">
         Your details are never shared or sold.
       </p>
-    </div>
+    </form>
   );
 }

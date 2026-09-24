@@ -11,3 +11,4 @@ _21st-fetch/
 __pycache__/
 *.pyc
 .vercel
+.env*

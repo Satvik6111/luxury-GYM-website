@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 function Monolith() {
@@ -55,9 +55,23 @@ function Lights() {
 
 export function HeroCanvas() {
   const [ready, setReady] = useState(false);
+  const [inView, setInView] = useState(true);
+  const wrap = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => setInView(entries[0]?.isIntersecting ?? true),
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
+      ref={wrap}
       className="absolute inset-0 opacity-0 transition-opacity duration-1000"
       style={{ opacity: ready ? 1 : 0 }}
       aria-hidden
@@ -67,7 +81,7 @@ export function HeroCanvas() {
         dpr={[1, 1.75]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={() => setReady(true)}
-        frameloop="always"
+        frameloop={inView ? "always" : "never"}
       >
         <Lights />
         <Monolith />
