@@ -53,7 +53,7 @@ export function SiteNav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled || open
-          ? "border-b border-[rgba(240,235,227,0.06)] bg-[rgba(11,12,14,0.9)] backdrop-blur-xl"
+          ? "border-b border-hairline-soft bg-obsidian-veil backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       )}
     >
@@ -63,7 +63,7 @@ export function SiteNav() {
           className="group flex cursor-pointer items-center gap-3"
           aria-label="Limitless Fitness home"
         >
-          <span className="flex h-8 w-8 items-center justify-center border border-[rgba(154,139,114,0.5)] text-[0.65rem] font-medium tracking-widest text-bronze-bright transition-colors group-hover:border-bronze-bright">
+          <span className="flex h-8 w-8 items-center justify-center border border-bronze-line text-[0.65rem] font-medium tracking-widest text-bronze-bright transition-colors group-hover:border-bronze-bright">
             LF
           </span>
           <span className="hidden text-[0.68rem] font-medium uppercase tracking-[0.32em] text-parchment-dim sm:block">
@@ -91,14 +91,14 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <Link
             href="/#consult"
-            className="hidden cursor-pointer rounded-full border border-[rgba(154,139,114,0.55)] px-4 py-2 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-bronze-bright transition-all duration-300 hover:border-bronze-bright hover:bg-[rgba(154,139,114,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright sm:inline-block md:px-5 md:py-2.5 md:text-[0.66rem]"
+            className="hidden cursor-pointer rounded-full border border-bronze-line px-4 py-2 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-bronze-bright transition-all duration-300 hover:border-bronze-bright hover:bg-bronze-tint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright sm:inline-block md:px-5 md:py-2.5 md:text-[0.66rem]"
           >
             Request
           </Link>
 
           <button
             type="button"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[rgba(240,235,227,0.1)] md:hidden"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-hairline-mid md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -131,7 +131,7 @@ export function SiteNav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-[rgba(240,235,227,0.06)] md:hidden"
+            className="overflow-hidden border-t border-hairline-soft md:hidden"
           >
             <nav
               className="flex flex-col gap-1 px-5 py-4"
@@ -159,7 +159,7 @@ export function SiteNav() {
                 onClick={() => {
                   setOpen(false);
                 }}
-                className="mt-2 cursor-pointer rounded-full border border-[rgba(154,139,114,0.55)] px-4 py-3 text-center text-[0.66rem] font-medium uppercase tracking-[0.2em] text-bronze-bright"
+                className="mt-2 cursor-pointer rounded-full border border-bronze-line px-4 py-3 text-center text-[0.66rem] font-medium uppercase tracking-[0.2em] text-bronze-bright"
               >
                 Request Consultation
               </Link>
@@ -173,15 +173,23 @@ export function SiteNav() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[rgba(240,235,227,0.06)] bg-obsidian">
+    <footer className="border-t border-hairline-soft bg-obsidian">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-14 md:flex-row md:items-end md:justify-between md:px-8 md:py-16">
-        <div>
-          <p className="font-display text-3xl text-parchment md:text-4xl">
-            Limitless Fitness
-          </p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-parchment-dim">
-            Private membership. One trainer. Your health, handled.
-          </p>
+        <div className="flex items-start gap-4">
+          <span
+            aria-hidden
+            className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center border border-bronze-line text-[0.65rem] font-medium tracking-widest text-bronze-bright"
+          >
+            LF
+          </span>
+          <div>
+            <p className="font-display text-3xl text-parchment md:text-4xl">
+              Limitless Fitness
+            </p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-parchment-dim">
+              Private membership. One trainer. Your health, handled.
+            </p>
+          </div>
         </div>
         <div className="flex flex-col gap-3 text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim md:items-end">
           <Link
@@ -207,7 +215,7 @@ export function SiteFooter() {
           </span>
         </div>
       </div>
-      <div className="border-t border-[rgba(240,235,227,0.04)] px-5 py-6 text-center text-[0.62rem] uppercase tracking-[0.24em] text-[rgba(196,189,178,0.45)] md:px-8">
+      <div className="border-t border-hairline-faint px-5 py-6 text-center text-[0.62rem] uppercase tracking-[0.24em] text-parchment-faint md:px-8">
         © {new Date().getFullYear()} Limitless Fitness
       </div>
     </footer>

@@ -1,23 +1,75 @@
 @import "tailwindcss";
 
 @theme {
+  /* ── Surface ─────────────────────────────── */
   --color-obsidian: #0b0c0e;
   --color-obsidian-raised: #121417;
   --color-obsidian-soft: #1a1d21;
+  --color-obsidian-deep: #0f1114;
+  --color-obsidian-veil: rgba(11, 12, 14, 0.9);
+  --color-obsidian-scrim: rgba(11, 12, 14, 0.75);
+
+  /* ── Text ────────────────────────────────── */
   --color-parchment: #f0ebe3;
   --color-parchment-dim: #c4bdb2;
+  --color-parchment-faint: rgba(196, 189, 178, 0.45);
+  --color-parchment-mute: rgba(196, 189, 178, 0.35);
+
+  /* ── Accent ──────────────────────────────── */
   --color-bronze: #9a8b72;
   --color-bronze-bright: #c4b49a;
-  --color-hairline: rgba(240, 235, 227, 0.08);
+  --color-bronze-line: rgba(154, 139, 114, 0.5);
+  --color-bronze-line-soft: rgba(154, 139, 114, 0.35);
+  --color-bronze-rule: rgba(154, 139, 114, 0.45);
+  --color-bronze-veil: rgba(154, 139, 114, 0.28);
+  --color-bronze-tint: rgba(154, 139, 114, 0.12);
+  --color-bronze-glow: rgba(154, 139, 114, 0.08);
+  --color-bronze-halo: rgba(196, 180, 154, 0.45);
 
+  /* ── Hairlines ───────────────────────────── */
+  --color-hairline-faint: rgba(240, 235, 227, 0.04);
+  --color-hairline-soft: rgba(240, 235, 227, 0.06);
+  --color-hairline: rgba(240, 235, 227, 0.08);
+  --color-hairline-mid: rgba(240, 235, 227, 0.1);
+  --color-hairline-strong: rgba(240, 235, 227, 0.14);
+
+  /* ── State ───────────────────────────────── */
+  --color-danger-line: rgba(196, 120, 120, 0.45);
+  --color-danger-bg: rgba(120, 40, 40, 0.15);
+
+  /* ── Elevation (tinted, single light source) ── */
+  --shadow-card:
+    inset 0 1px 0 0 rgba(240, 235, 227, 0.03),
+    0 20px 40px -26px rgba(0, 0, 0, 0.85);
+  --shadow-card-hover:
+    inset 0 1px 0 0 rgba(240, 235, 227, 0.06),
+    0 30px 50px -26px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 60px -14px rgba(154, 139, 114, 0.4);
+
+  /* ── Radius ──────────────────────────────── */
+  --radius-panel: 0.5rem;
+  --radius-bezel: 1.25rem;
+
+  /* ── Type ────────────────────────────────── */
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
 
+  /* ── Motion ──────────────────────────────── */
   --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 :root {
   color-scheme: dark;
+
+  /* z-index scale — reserved for systemic layers only */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-nav: 50;
+  --z-overlay: 100;
+  --z-grain: 9999;
+  --z-cursor: 10000;
 }
 
 html {
@@ -47,11 +99,11 @@ body {
   position: absolute;
   left: 1rem;
   top: -100%;
-  z-index: 10001;
+  z-index: var(--z-overlay);
   padding: 0.75rem 1rem;
   background: var(--color-obsidian-raised);
   color: var(--color-parchment);
-  border: 1px solid rgba(154, 139, 114, 0.5);
+  border: 1px solid var(--color-bronze-line);
   border-radius: 999px;
   font-size: 0.75rem;
   letter-spacing: 0.16em;
@@ -67,7 +119,7 @@ body {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: var(--z-grain);
   opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -83,6 +135,218 @@ body {
 
 .hairline {
   border-color: var(--color-hairline);
+}
+
+/* ── Ambient glows (replaces inline radial-gradient literals) ── */
+.glow-center {
+  background: radial-gradient(
+    circle,
+    rgba(154, 139, 114, 0.12),
+    transparent 65%
+  );
+}
+
+.glow-top {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(154, 139, 114, 0.08),
+    transparent 55%
+  );
+}
+
+.glow-top-right {
+  background: radial-gradient(
+    ellipse at top right,
+    rgba(154, 139, 114, 0.1),
+    transparent 50%
+  );
+}
+
+.glow-center-top {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(154, 139, 114, 0.1),
+    transparent 55%
+  );
+}
+
+/* ── Photography grade ──────────────────────
+   Every photo is pulled into the obsidian/bronze world:
+   warm monochrome, darkened, contrast-lifted.          */
+.grade {
+  filter: grayscale(1) sepia(0.4) saturate(1.6) brightness(0.86)
+    contrast(1.12);
+}
+
+.grade-soft {
+  filter: grayscale(0.7) sepia(0.28) saturate(1.35) brightness(0.9)
+    contrast(1.08);
+}
+
+.grade-mono {
+  filter: grayscale(1) brightness(0.88) contrast(1.14);
+}
+
+.grade-deep {
+  filter: grayscale(1) sepia(0.44) saturate(1.5) brightness(0.7)
+    contrast(1.18);
+}
+
+.grade-lift {
+  filter: grayscale(1) sepia(0.42) saturate(1.55) brightness(1.75)
+    contrast(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fig-zoom img {
+    transition: transform 900ms var(--ease-luxury);
+    will-change: transform;
+  }
+
+  .fig-zoom:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fig-zoom img {
+    transition: none;
+  }
+
+  .fig-zoom:hover img {
+    transform: none;
+  }
+}
+
+/* ── Editorial split gutters ────────────────
+   Padding that matches the max-w-6xl container from inside a 50/50 split,
+   so half-bleed panels align their text edge with the rest of the page. */
+@media (min-width: 768px) {
+  .split-pad-l {
+    padding-left: max(2rem, calc(100% - 34rem));
+  }
+
+  .split-pad-r {
+    padding-right: max(2rem, calc(100% - 34rem));
+  }
+}
+
+/* ── Photo scrims ─────────────────────────── */
+.scrim-top {
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 12, 14, 0.9),
+    rgba(11, 12, 14, 0.2) 45%,
+    transparent 72%
+  );
+}
+
+.scrim-bottom {
+  background: linear-gradient(
+    to top,
+    var(--color-obsidian) 0%,
+    rgba(11, 12, 14, 0.72) 32%,
+    transparent 78%
+  );
+}
+
+.scrim-left {
+  background: linear-gradient(
+    to right,
+    rgba(11, 12, 14, 0.96) 0%,
+    rgba(11, 12, 14, 0.82) 32%,
+    rgba(11, 12, 14, 0.42) 55%,
+    transparent 82%
+  );
+}
+
+.scrim-vignette {
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    transparent 26%,
+    rgba(11, 12, 14, 0.5) 76%,
+    rgba(11, 12, 14, 0.86) 100%
+  );
+}
+
+/* Marquee edge falloff */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+/* ── Marquee ──────────────────────────────── */
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x var(--marquee-duration, 70s) linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ── Scroll cue ───────────────────────────── */
+@keyframes scroll-hint {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.scroll-hint {
+  animation: scroll-hint 2.4s var(--ease-luxury) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint {
+    animation: none;
+    transform: scaleY(1);
+  }
 }
 
 /* Stardust button (21st.dev source, retokened) */
@@ -103,7 +367,7 @@ body {
 
 /* Glass radio (21st.dev source, retokened) */
 .glass-radio-group input:checked + label {
-  color: #f0ebe3;
+  color: var(--color-parchment);
 }
 
 @media (max-width: 640px) {
@@ -116,11 +380,18 @@ body {
   }
 
   .glass-radio-group label {
-    border-bottom: 1px solid rgba(240, 235, 227, 0.06);
+    border-bottom: 1px solid var(--color-hairline-soft);
   }
 
   .glass-radio-group input:checked + label {
     background: rgba(154, 139, 114, 0.25);
+  }
+}
+
+/* Hover-only affordances never fire on touch */
+@media (hover: none), (pointer: coarse) {
+  .magnetic {
+    transform: none !important;
   }
 }
 

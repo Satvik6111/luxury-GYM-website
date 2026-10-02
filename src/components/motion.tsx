@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import type { ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -36,14 +37,23 @@ export function LineMask({
   delay?: number;
   className?: string;
 }) {
+  const clipRef = useRef<HTMLSpanElement>(null);
+  const inView = useInView(clipRef, { once: true, margin: "-8%" });
   const reduced = useReducedMotion();
+
+  // The observer watches the clip wrapper, never the translated child: a child
+  // pushed fully outside an overflow-hidden box stops intersecting, so it would
+  // wait forever for a viewport event that can never arrive.
+  if (reduced) {
+    return <span className={`block ${className ?? ""}`}>{children}</span>;
+  }
+
   return (
-    <span className={`block overflow-hidden ${className ?? ""}`}>
+    <span ref={clipRef} className={`block overflow-hidden ${className ?? ""}`}>
       <motion.span
         className="block"
-        initial={reduced ? false : { y: "110%" }}
-        whileInView={{ y: 0 }}
-        viewport={{ once: true }}
+        initial={{ y: "110%" }}
+        animate={inView ? { y: 0 } : { y: "110%" }}
         transition={{ duration: 1.1, delay, ease: EASE }}
       >
         {children}
@@ -56,7 +66,7 @@ export function SectionLabel({ index, children }: { index: string; children: Rea
   return (
     <Reveal className="mb-8 flex items-center gap-4 md:mb-12">
       <span className="label tabular-nums">{index}</span>
-      <span className="h-px w-10 bg-[rgba(154,139,114,0.45)]" />
+      <span className="h-px w-10 bg-bronze-rule" />
       <span className="label">{children}</span>
     </Reveal>
   );

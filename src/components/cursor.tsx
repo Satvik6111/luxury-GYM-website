@@ -68,12 +68,12 @@ export function CustomCursor() {
     <>
       <div
         ref={dot}
-        className="pointer-events-none fixed left-0 top-0 z-[10000] h-1.5 w-1.5 rounded-full bg-bronze-bright mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[var(--z-cursor)] h-1.5 w-1.5 rounded-full bg-bronze-bright mix-blend-difference"
         aria-hidden
       />
       <div
         ref={ring}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-8 w-8 rounded-full border border-[rgba(196,180,154,0.45)]"
+        className="pointer-events-none fixed left-0 top-0 z-[var(--z-cursor)] h-8 w-8 rounded-full border border-bronze-halo"
         aria-hidden
       />
     </>

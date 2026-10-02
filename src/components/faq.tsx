@@ -38,13 +38,13 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="border-y border-[rgba(240,235,227,0.07)]">
+    <div className="border-y border-hairline-soft">
       {faqs.map((item, i) => {
         const isOpen = open === i;
         return (
           <div
             key={item.q}
-            className="border-b border-[rgba(240,235,227,0.07)] last:border-b-0"
+            className="border-b border-hairline-soft last:border-b-0"
           >
             <button
               type="button"

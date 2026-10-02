@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight } from "phosphor-react";
 import { SiteNav, SiteFooter } from "@/components/chrome";
 import { Reveal, LineMask, SectionLabel } from "@/components/motion";
 import { NoisePatternCard, NoisePatternCardBody } from "@/components/ui/noise-card";
 import { CustomCursor } from "@/components/cursor";
 import { LeatherButton } from "@/components/ui/leather-button";
+import { Figure } from "@/components/figure";
 
 const trainerProfile = {
   name: "",
@@ -42,7 +44,7 @@ export function TrainerView() {
 
       <main id="main">
         <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(154,139,114,0.1),transparent_50%)]" />
+          <div className="pointer-events-none absolute inset-0 glow-top-right" />
           <div className="relative mx-auto max-w-6xl px-5 md:px-8">
             <SectionLabel index="01">The Trainer</SectionLabel>
             <h1 className="max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.98] text-parchment">
@@ -63,28 +65,23 @@ export function TrainerView() {
         </section>
 
         {/* DOSSIER */}
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
             <div className="grid gap-12 md:grid-cols-12 md:gap-16">
               <div className="md:col-span-5">
                 <Reveal>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-[rgba(154,139,114,0.3)] bg-obsidian-raised">
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 opacity-[0.08]"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                      }}
-                    />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                      <span className="font-display text-[6rem] leading-none text-bronze-bright md:text-[8rem]">
-                        LF
-                      </span>
-                      <span className="label">
-                        {trainerProfile.name || "Portrait"}
-                      </span>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-bronze-line-soft bg-obsidian-raised">
+                    <div className="absolute inset-0">
+                      <Figure
+                        src="/images/portrait-trainer.jpg"
+                        alt="The Limitless head trainer on the training floor"
+                        grade="lift"
+                        scrim="bottom"
+                        sizes="(min-width: 768px) 40vw, 100vw"
+                        className="h-full w-full"
+                      />
                     </div>
-                    <div className="absolute inset-x-0 bottom-0 border-t border-[rgba(240,235,227,0.08)] bg-[rgba(11,12,14,0.85)] p-5 backdrop-blur-sm">
+                    <div className="absolute inset-x-0 bottom-0 border-t border-hairline bg-obsidian-veil p-5 backdrop-blur-sm">
                       <p className="font-display text-2xl text-parchment">
                         {trainerProfile.name || "The Trainer"}
                       </p>
@@ -112,7 +109,7 @@ export function TrainerView() {
                   </div>
                 </Reveal>
 
-                <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-[rgba(240,235,227,0.08)] bg-[rgba(240,235,227,0.08)] sm:grid-cols-4">
+                <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-hairline bg-hairline sm:grid-cols-4">
                   {credentials.map((c, i) => (
                     <Reveal key={c.label} delay={i * 0.06} className="bg-obsidian-raised">
                       <div className="flex h-full flex-col justify-between p-4">
@@ -132,7 +129,7 @@ export function TrainerView() {
         </section>
 
         {/* CREDENTIALS LEDGER */}
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
             <SectionLabel index="02">Credentials</SectionLabel>
             <Reveal>
@@ -143,7 +140,7 @@ export function TrainerView() {
             </Reveal>
             <div className="grid gap-10 md:grid-cols-2">
               <Reveal>
-                <ul className="divide-y divide-[rgba(240,235,227,0.07)] border-y border-[rgba(240,235,227,0.07)]">
+                <ul className="divide-y divide-hairline-soft border-y border-hairline-soft">
                   {certList.map((cert) => (
                     <li
                       key={cert}
@@ -189,7 +186,7 @@ export function TrainerView() {
           </div>
         </section>
 
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 text-center md:px-8">
             <Reveal>
               <h2 className="font-display text-[clamp(1.85rem,4vw,3rem)] text-parchment">
@@ -201,7 +198,13 @@ export function TrainerView() {
                   <LeatherButton>Request a Private Consultation</LeatherButton>
                 </Link>
                 <Link href="/results" className="cursor-pointer text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment self-center">
-                  See results →
+                  See results
+                  <ArrowRight
+                    size={13}
+                    weight="light"
+                    aria-hidden
+                    className="ml-2 inline-block align-middle text-current"
+                  />
                 </Link>
               </div>
             </Reveal>

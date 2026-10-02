@@ -102,7 +102,7 @@ export function ConsultationForm() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         role="status"
         aria-live="polite"
-        className="rounded-md border border-[rgba(154,139,114,0.35)] bg-[#121417] p-8 text-center md:p-12"
+        className="rounded-md border border-bronze-line-soft bg-obsidian-raised p-8 text-center md:p-12"
       >
         <p className="label mb-4">Received</p>
         <h3 className="font-display text-3xl text-parchment md:text-4xl">
@@ -123,7 +123,7 @@ export function ConsultationForm() {
         e.preventDefault();
         void next();
       }}
-      className="rounded-md border border-[rgba(240,235,227,0.08)] bg-[#121417] p-6 md:p-10"
+      className="rounded-md border border-hairline bg-obsidian-raised p-6 md:p-10"
     >
       <div className="mb-8 flex items-center justify-between">
         <span className="label">
@@ -135,7 +135,7 @@ export function ConsultationForm() {
       </div>
 
       <div
-        className="mb-8 h-px w-full bg-[rgba(240,235,227,0.08)]"
+        className="mb-8 h-px w-full bg-hairline"
         role="progressbar"
         aria-valuemin={1}
         aria-valuemax={steps.length}
@@ -154,7 +154,7 @@ export function ConsultationForm() {
         <div
           role="alert"
           tabIndex={-1}
-          className="mb-6 rounded-md border border-[rgba(196,120,120,0.45)] bg-[rgba(120,40,40,0.15)] px-4 py-3 text-sm text-parchment"
+          className="mb-6 rounded-md border border-danger-line bg-danger-bg px-4 py-3 text-sm text-parchment"
         >
           {errorMsg}
         </div>
@@ -194,7 +194,7 @@ export function ConsultationForm() {
                 }}
                 placeholder="Full name"
                 aria-invalid={form.name.length > 0 && form.name.trim().length <= 1}
-                className="mt-8 w-full cursor-text border-b border-[rgba(240,235,227,0.14)] bg-transparent pb-4 font-display text-2xl text-parchment outline-none transition-colors placeholder:text-[rgba(196,189,178,0.35)] focus:border-bronze-bright md:text-3xl"
+                className="mt-8 w-full cursor-text border-b border-hairline-strong bg-transparent pb-4 font-display text-2xl text-parchment outline-none transition-colors placeholder:text-parchment-mute focus:border-bronze-bright md:text-3xl"
               />
             </div>
           )}
@@ -230,7 +230,7 @@ export function ConsultationForm() {
                 }}
                 placeholder="you@company.com"
                 aria-invalid={form.email.length > 0 && !emailValid}
-                className="mt-8 w-full cursor-text border-b border-[rgba(240,235,227,0.14)] bg-transparent pb-4 font-display text-2xl text-parchment outline-none transition-colors placeholder:text-[rgba(196,189,178,0.35)] focus:border-bronze-bright md:text-3xl"
+                className="mt-8 w-full cursor-text border-b border-hairline-strong bg-transparent pb-4 font-display text-2xl text-parchment outline-none transition-colors placeholder:text-parchment-mute focus:border-bronze-bright md:text-3xl"
               />
             </div>
           )}

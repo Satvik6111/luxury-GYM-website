@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import { Sparkle } from "phosphor-react";
 
 interface StardustButtonProps {
   children?: React.ReactNode;
@@ -22,10 +23,10 @@ export function StardustButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`stardust-button group relative cursor-pointer overflow-hidden rounded-full border-0 px-9 py-4 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:translate-y-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`stardust-button group relative cursor-pointer overflow-hidden rounded-full border-0 px-9 py-4 transition-all duration-300 ease-luxury active:translate-y-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       style={{
         outline: "none",
-        backgroundColor: "#121417",
+        backgroundColor: "var(--color-obsidian-raised)",
         boxShadow: `
           inset 0 0.25rem 0.75rem rgba(240,235,227,0.08),
           inset 0 -0.1rem 0.25rem rgba(0,0,0,0.55),
@@ -36,11 +37,21 @@ export function StardustButton({
     >
       <span
         className="stardust-wrap relative z-10 flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.24em]"
-        style={{ color: "rgba(196,180,154,0.95)" }}
+        style={{ color: "var(--color-bronze-bright)" }}
       >
-        <span className="transition-transform duration-300 group-hover:rotate-90">✧</span>
+        <Sparkle
+          size={12}
+          weight="light"
+          aria-hidden
+          className="transition-transform duration-300 group-hover:rotate-90"
+        />
         <span>{children}</span>
-        <span className="transition-transform duration-300 group-hover:rotate-90">✦</span>
+        <Sparkle
+          size={12}
+          weight="light"
+          aria-hidden
+          className="transition-transform duration-300 group-hover:rotate-90"
+        />
       </span>
       <span className="stardust-sheen pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
     </button>

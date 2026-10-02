@@ -22,7 +22,7 @@ export function LeatherButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.22em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.22em] transition-all duration-300 ease-luxury hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       style={{
         color: "#f0ebe3",
         background: `

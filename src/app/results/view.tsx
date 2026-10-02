@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight } from "phosphor-react";
 import { SiteNav, SiteFooter } from "@/components/chrome";
 import { Reveal, LineMask, SectionLabel } from "@/components/motion";
 import { NoisePatternCard, NoisePatternCardBody } from "@/components/ui/noise-card";
 import { CustomCursor } from "@/components/cursor";
 import { LeatherButton } from "@/components/ui/leather-button";
+import {
+  ImageComparison,
+  ImageComparisonImage,
+  ImageComparisonSlider,
+} from "@/components/ui/image-comparison";
 
 type Metric = { label: string; from: string; to: string };
 
@@ -94,7 +100,7 @@ export function ResultsView() {
 
       <main id="main">
         <section className="relative overflow-hidden pt-32 pb-16 md:pt-44 md:pb-20">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,rgba(154,139,114,0.1),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 glow-center-top" />
           <div className="relative mx-auto max-w-6xl px-5 md:px-8">
             <SectionLabel index="01">Results</SectionLabel>
             <h1 className="max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.98] text-parchment">
@@ -122,7 +128,7 @@ export function ResultsView() {
         </section>
 
         {/* CASE STUDIES */}
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl space-y-8 px-5 md:space-y-10 md:px-8">
             {cases.map((c, i) => (
               <Reveal key={c.id} delay={i * 0.06}>
@@ -145,9 +151,9 @@ export function ResultsView() {
                         </blockquote>
                       </div>
 
-                      <div className="grid w-full grid-cols-2 gap-px overflow-hidden rounded-md border border-[rgba(240,235,227,0.08)] bg-[rgba(240,235,227,0.08)] md:max-w-md">
+                      <div className="grid w-full grid-cols-2 gap-px overflow-hidden rounded-md border border-hairline bg-hairline md:max-w-md">
                         {c.metrics.map((m) => (
-                          <div key={m.label} className="bg-[#0f1114] p-4">
+                          <div key={m.label} className="bg-obsidian-deep p-4">
                             <p className="text-[0.58rem] uppercase tracking-[0.14em] text-parchment-dim">
                               {m.label}
                             </p>
@@ -155,7 +161,12 @@ export function ResultsView() {
                               <span className="text-sm text-parchment-dim/70 line-through decoration-bronze/50">
                                 {m.from}
                               </span>
-                              <span className="text-bronze-bright">→</span>
+                              <ArrowRight
+                                size={13}
+                                weight="light"
+                                aria-hidden
+                                className="shrink-0 text-bronze-bright"
+                              />
                               <span className="font-display text-xl text-parchment">
                                 {m.to}
                               </span>
@@ -171,10 +182,65 @@ export function ResultsView() {
           </div>
         </section>
 
-        {/* HOW WE MEASURE */}
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        {/* BEFORE / AFTER */}
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <SectionLabel index="02">How We Measure</SectionLabel>
+            <SectionLabel index="02">Before &amp; After</SectionLabel>
+            <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="font-display text-[clamp(1.85rem,4vw,3rem)] leading-tight text-parchment">
+                  Drag the line.
+                  <span className="block italic text-bronze-bright">
+                    Twenty-six weeks apart.
+                  </span>
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm leading-relaxed text-parchment-dim">
+                Same member, same lighting, same time of day. No posing, no
+                filters, no flattering angles — the only retouching is a warm
+                grade so the pair sits in one palette.
+              </p>
+            </div>
+
+            <Reveal>
+              <ImageComparison
+                enableHover
+                className="aspect-[4/3] w-full overflow-hidden rounded-panel border border-hairline bg-obsidian-raised sm:aspect-[16/9] lg:aspect-[21/9]"
+              >
+                <ImageComparisonImage
+                  position="right"
+                  src="/images/progress-early.jpg"
+                  alt="Week one, before coaching begins"
+                  className="grade"
+                />
+                <ImageComparisonImage
+                  position="left"
+                  src="/images/progress-late.jpg"
+                  alt="Week twenty-six, after consistent coaching"
+                  className="grade-lift"
+                />
+                <div className="pointer-events-none absolute inset-0 scrim-bottom" />
+                <div className="pointer-events-none absolute inset-0 flex items-start justify-between p-5 md:p-7">
+                  <span className="label">Week 01</span>
+                  <span className="label text-bronze-bright">Week 26</span>
+                </div>
+                <ImageComparisonSlider className="w-px bg-bronze-bright">
+                  <span
+                    aria-hidden
+                    className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-bronze-bright bg-obsidian-veil backdrop-blur-sm"
+                  >
+                    <ArrowRight size={12} weight="light" className="rotate-180 text-bronze-bright" />
+                  </span>
+                </ImageComparisonSlider>
+              </ImageComparison>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* HOW WE MEASURE */}
+        <section className="border-t border-hairline-soft py-20 md:py-28">
+          <div className="mx-auto max-w-6xl px-5 md:px-8">
+            <SectionLabel index="03">How We Measure</SectionLabel>
             <div className="mb-12 max-w-2xl">
               <h2 className="font-display text-[clamp(1.85rem,4vw,3rem)] leading-tight text-parchment">
                 Anyone can promise.
@@ -184,10 +250,10 @@ export function ResultsView() {
               </h2>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-md border border-[rgba(240,235,227,0.08)] bg-[rgba(240,235,227,0.08)] sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-px overflow-hidden rounded-md border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
               {process.map((p, i) => (
                 <Reveal key={p.n} delay={i * 0.07} className="bg-obsidian-raised">
-                  <div className="h-full p-6 transition-colors duration-500 hover:bg-[#1a1d21] md:p-7">
+                  <div className="h-full p-6 transition-colors duration-500 hover:bg-obsidian-soft md:p-7">
                     <span className="label">{p.n}</span>
                     <h3 className="mt-4 font-display text-xl text-parchment md:text-2xl">
                       {p.t}
@@ -210,7 +276,7 @@ export function ResultsView() {
           </div>
         </section>
 
-        <section className="border-t border-[rgba(240,235,227,0.06)] py-20 md:py-28">
+        <section className="border-t border-hairline-soft py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 text-center md:px-8">
             <Reveal>
               <h2 className="font-display text-[clamp(1.85rem,4vw,3rem)] text-parchment">
@@ -225,7 +291,13 @@ export function ResultsView() {
                   href="/trainer"
                   className="cursor-pointer self-center text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment"
                 >
-                  Meet the trainer →
+                  Meet the trainer
+                  <ArrowRight
+                    size={13}
+                    weight="light"
+                    aria-hidden
+                    className="ml-2 inline-block align-middle text-current"
+                  />
                 </Link>
               </div>
             </Reveal>

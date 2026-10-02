@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface NoisePatternCardProps {
@@ -10,13 +9,9 @@ interface NoisePatternCardProps {
 
 export function NoisePatternCard({ children, className }: NoisePatternCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    <div
       className={cn(
-        "relative w-full overflow-hidden rounded-md border border-[rgba(240,235,227,0.08)] bg-[#121417]",
+        "relative w-full overflow-hidden rounded-panel border border-hairline bg-obsidian-raised shadow-card",
         className
       )}
     >
@@ -28,8 +23,8 @@ export function NoisePatternCard({ children, className }: NoisePatternCardProps)
           backgroundSize: "500px 500px",
         }}
       />
-      <div className="relative z-10 bg-[#0b0c0e]/40">{children}</div>
-    </motion.div>
+      <div className="relative z-10 bg-obsidian/40">{children}</div>
+    </div>
   );
 }
 

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -52,10 +54,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${montserrat.variable}`}
     >
       <body className="grain antialiased">
+        <SmoothScroll />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
