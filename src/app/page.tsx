@@ -158,10 +158,10 @@ function QuoteCard({
         {quote}
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-3 border-t border-hairline-soft pt-5">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-bronze-line-soft bg-obsidian-soft text-[0.62rem] tracking-[0.12em] text-bronze-bright">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-bronze-line-soft bg-obsidian-soft text-[0.7rem] md:text-[0.62rem] tracking-[0.12em] text-bronze-bright">
           {who}
         </span>
-        <span className="text-[0.62rem] uppercase tracking-[0.18em] text-parchment-faint">
+        <span className="text-[0.7rem] md:text-[0.62rem] uppercase tracking-[0.18em] text-parchment-faint">
           {role}
         </span>
       </figcaption>
@@ -271,7 +271,7 @@ export default function HomePage() {
                     <p className="font-display text-4xl leading-none tabular-nums lining-nums text-parchment md:text-5xl">
                       {s.text ?? <CountUp to={s.to ?? 0} suffix={s.suffix ?? ""} />}
                     </p>
-                    <p className="mt-3 text-[0.58rem] uppercase leading-[1.6] tracking-[0.16em] text-parchment-faint md:text-[0.63rem]">
+                    <p className="mt-3 text-[0.7rem] uppercase leading-[1.6] tracking-[0.16em] text-parchment-dim/80 md:text-[0.63rem] md:text-parchment-faint">
                       {s.label}
                     </p>
                   </div>
@@ -432,7 +432,7 @@ export default function HomePage() {
                 {promises.map((p) => (
                   <span
                     key={p}
-                    className="flex items-center gap-2.5 text-[0.66rem] uppercase tracking-[0.2em] text-parchment-dim"
+                    className="flex items-center gap-2.5 text-[0.7rem] md:text-[0.66rem] uppercase tracking-[0.2em] text-parchment-dim"
                   >
                     <Check size={13} weight="light" className="text-bronze-bright" />
                     {p}
@@ -673,7 +673,7 @@ export default function HomePage() {
                           Your entire system.
                         </span>
                       </h3>
-                      <span className="mt-6 inline-flex items-center gap-2 text-[0.66rem] uppercase tracking-[0.22em] text-bronze transition-transform duration-300 group-hover:translate-x-1">
+                      <span className="mt-6 inline-flex items-center gap-2 text-[0.7rem] md:text-[0.66rem] uppercase tracking-[0.22em] text-bronze transition-transform duration-300 group-hover:translate-x-1">
                         Meet them
                         <ArrowRight size={14} weight="light" />
                       </span>
@@ -704,7 +704,7 @@ export default function HomePage() {
                           Reported. Undeniable.
                         </span>
                       </h3>
-                      <span className="mt-6 inline-flex items-center gap-2 text-[0.66rem] uppercase tracking-[0.22em] text-bronze transition-transform duration-300 group-hover:translate-x-1">
+                      <span className="mt-6 inline-flex items-center gap-2 text-[0.7rem] md:text-[0.66rem] uppercase tracking-[0.22em] text-bronze transition-transform duration-300 group-hover:translate-x-1">
                         See the proof
                         <ArrowRight size={14} weight="light" />
                       </span>

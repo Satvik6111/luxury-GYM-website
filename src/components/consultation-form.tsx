@@ -129,7 +129,7 @@ export function ConsultationForm() {
         <span className="label">
           {String(step + 1).padStart(2, "0")} — {steps[step]}
         </span>
-        <span className="text-[0.65rem] tracking-[0.2em] text-parchment-dim">
+        <span className="text-[0.7rem] md:text-[0.65rem] tracking-[0.2em] text-parchment-dim">
           {step + 1} / {steps.length}
         </span>
       </div>
@@ -314,7 +314,7 @@ export function ConsultationForm() {
               setErrorMsg("");
               setStep(step - 1);
             }}
-            className="cursor-pointer text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright"
+            className="cursor-pointer text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright"
           >
             Back
           </button>
@@ -333,7 +333,7 @@ export function ConsultationForm() {
         )}
       </div>
 
-      <p className="mt-6 text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim/70">
+      <p className="mt-6 text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim/70">
         Your details are never shared or sold.
       </p>
     </form>

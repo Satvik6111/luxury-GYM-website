@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Touch devices keep `:hover` active after a tap, leaving cards and links
+   visibly "pressed" until the next tap. Gate every hover utility behind a real
+   pointing device so a tap only ever fires `:active`. */
+@custom-variant hover {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
 @theme {
   /* ── Surface ─────────────────────────────── */
   --color-obsidian: #0b0c0e;
@@ -72,10 +83,6 @@
   --z-cursor: 10000;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: var(--color-obsidian);
   color: var(--color-parchment);
@@ -93,6 +100,48 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-bronze-bright);
   outline-offset: 3px;
+}
+
+/* ── Mobile platform baseline ───────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-x: none;
+    scroll-behavior: auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  summary {
+    touch-action: manipulation;
+  }
+
+  button,
+  [role="button"],
+  summary,
+  select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  @media (pointer: coarse) {
+    input,
+    textarea,
+    select {
+      font-size: max(16px, 1em);
+    }
+  }
+}
+
+@layer components {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
 }
 
 .skip-link {
@@ -305,7 +354,17 @@ body {
   will-change: transform;
 }
 
-.marquee:hover .marquee-track {
+.marquee {
+  touch-action: pan-y;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+.marquee:active .marquee-track {
   animation-play-state: paused;
 }
 

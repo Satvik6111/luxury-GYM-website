@@ -51,7 +51,7 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "safe-area-top fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled || open
           ? "border-b border-hairline-soft bg-obsidian-veil backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
@@ -60,13 +60,13 @@ export function SiteNav() {
       <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-20 md:px-8">
         <Link
           href="/"
-          className="group flex cursor-pointer items-center gap-3"
+          className="group -my-3 -ml-2 flex cursor-pointer items-center gap-3 p-2"
           aria-label="Limitless Fitness home"
         >
-          <span className="flex h-8 w-8 items-center justify-center border border-bronze-line text-[0.65rem] font-medium tracking-widest text-bronze-bright transition-colors group-hover:border-bronze-bright">
+          <span className="flex h-8 w-8 items-center justify-center border border-bronze-line text-[0.7rem] md:text-[0.65rem] font-medium tracking-widest text-bronze-bright transition-colors group-hover:border-bronze-bright">
             LF
           </span>
-          <span className="hidden text-[0.68rem] font-medium uppercase tracking-[0.32em] text-parchment-dim sm:block">
+          <span className="hidden text-[0.7rem] md:text-[0.68rem] font-medium uppercase tracking-[0.32em] text-parchment-dim sm:block">
             Limitless
           </span>
         </Link>
@@ -77,7 +77,7 @@ export function SiteNav() {
               key={l.href}
               href={l.href}
               className={cn(
-                "cursor-pointer text-[0.68rem] font-medium uppercase tracking-[0.22em] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright",
+                "cursor-pointer text-[0.7rem] md:text-[0.68rem] font-medium uppercase tracking-[0.22em] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright",
                 pathname === l.href
                   ? "text-parchment"
                   : "text-parchment-dim hover:text-parchment"
@@ -91,14 +91,14 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <Link
             href="/#consult"
-            className="hidden cursor-pointer rounded-full border border-bronze-line px-4 py-2 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-bronze-bright transition-all duration-300 hover:border-bronze-bright hover:bg-bronze-tint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright sm:inline-block md:px-5 md:py-2.5 md:text-[0.66rem]"
+            className="hidden cursor-pointer rounded-full border border-bronze-line px-4 py-2 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-bronze-bright transition-all duration-300 hover:border-bronze-bright hover:bg-bronze-tint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright sm:inline-block md:px-5 md:py-2.5 md:text-[0.66rem]"
           >
             Request
           </Link>
 
           <button
             type="button"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-hairline-mid md:hidden"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-hairline-mid md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -145,7 +145,7 @@ export function SiteNav() {
                     setOpen(false);
                   }}
                   className={cn(
-                    "cursor-pointer py-3 text-[0.72rem] font-medium uppercase tracking-[0.22em] transition-colors",
+                    "flex min-h-11 cursor-pointer items-center py-3 text-[0.75rem] font-medium uppercase tracking-[0.22em] transition-colors",
                     pathname === l.href
                       ? "text-parchment"
                       : "text-parchment-dim hover:text-parchment"
@@ -159,7 +159,7 @@ export function SiteNav() {
                 onClick={() => {
                   setOpen(false);
                 }}
-                className="mt-2 cursor-pointer rounded-full border border-bronze-line px-4 py-3 text-center text-[0.66rem] font-medium uppercase tracking-[0.2em] text-bronze-bright"
+                className="mt-3 flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-bronze-line px-4 py-3.5 text-center text-[0.7rem] md:text-[0.66rem] font-medium uppercase tracking-[0.2em] text-bronze-bright transition-colors hover:border-bronze-bright hover:bg-bronze-tint"
               >
                 Request Consultation
               </Link>
@@ -178,7 +178,7 @@ export function SiteFooter() {
         <div className="flex items-start gap-4">
           <span
             aria-hidden
-            className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center border border-bronze-line text-[0.65rem] font-medium tracking-widest text-bronze-bright"
+            className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center border border-bronze-line text-[0.7rem] md:text-[0.65rem] font-medium tracking-widest text-bronze-bright"
           >
             LF
           </span>
@@ -191,31 +191,31 @@ export function SiteFooter() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-3 text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim md:items-end">
+        <div className="flex flex-col gap-0 text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim md:items-end">
           <Link
             href="/trainer"
-            className="cursor-pointer transition-colors hover:text-parchment"
+            className="-mx-2 flex min-h-11 cursor-pointer items-center px-2 transition-colors hover:text-parchment md:mr-0"
           >
             The Trainer
           </Link>
           <Link
             href="/results"
-            className="cursor-pointer transition-colors hover:text-parchment"
+            className="-mx-2 flex min-h-11 cursor-pointer items-center px-2 transition-colors hover:text-parchment md:mr-0"
           >
             Results
           </Link>
           <Link
             href="/#consult"
-            className="cursor-pointer transition-colors hover:text-parchment"
+            className="-mx-2 flex min-h-11 cursor-pointer items-center px-2 transition-colors hover:text-parchment md:mr-0"
           >
             Private Consultation
           </Link>
-          <span className="mt-4 max-w-xs text-right leading-relaxed text-bronze md:text-right">
+          <span className="mt-4 max-w-xs leading-relaxed text-bronze md:text-right">
             Every request receives a personal reply within 24 hours.
           </span>
         </div>
       </div>
-      <div className="border-t border-hairline-faint px-5 py-6 text-center text-[0.62rem] uppercase tracking-[0.24em] text-parchment-faint md:px-8">
+      <div className="border-t border-hairline-faint px-5 py-6 text-center text-[0.7rem] md:text-[0.62rem] uppercase tracking-[0.24em] text-parchment-faint md:px-8">
         © {new Date().getFullYear()} Limitless Fitness
       </div>
     </footer>

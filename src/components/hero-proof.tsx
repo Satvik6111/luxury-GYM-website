@@ -45,20 +45,20 @@ export function HeroProof() {
         />
 
         <ImageComparisonSlider className="w-px bg-bronze">
-          <span className="absolute left-1/2 top-1/2 flex h-10 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[3px] border border-bronze bg-obsidian-soft text-[0.65rem] tracking-[0.15em] text-bronze-bright shadow-lg">
+          <span className="absolute left-1/2 top-1/2 flex h-10 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[3px] border border-bronze bg-obsidian-soft text-[0.7rem] md:text-[0.65rem] tracking-[0.15em] text-bronze-bright shadow-lg">
             ‹›
           </span>
         </ImageComparisonSlider>
 
-        <span className="absolute left-3 top-3 rounded-full border border-hairline-strong bg-obsidian-scrim px-2.5 py-1 text-[0.55rem] uppercase tracking-[0.25em] text-parchment-dim backdrop-blur-sm">
+        <span className="absolute left-3 top-3 rounded-full border border-hairline-strong bg-obsidian-scrim px-2.5 py-1 text-[0.7rem] md:text-[0.55rem] uppercase tracking-[0.25em] text-parchment-dim backdrop-blur-sm">
           Before
         </span>
-        <span className="absolute right-3 top-3 rounded-full border border-bronze-rule bg-obsidian-scrim px-2.5 py-1 text-[0.55rem] uppercase tracking-[0.25em] text-bronze-bright backdrop-blur-sm">
+        <span className="absolute right-3 top-3 rounded-full border border-bronze-rule bg-obsidian-scrim px-2.5 py-1 text-[0.7rem] md:text-[0.55rem] uppercase tracking-[0.25em] text-bronze-bright backdrop-blur-sm">
           After
         </span>
       </ImageComparison>
 
-      <p className="mt-3 text-center text-[0.65rem] uppercase tracking-[0.25em] text-parchment-dim">
+      <p className="mt-3 text-center text-[0.7rem] md:text-[0.65rem] uppercase tracking-[0.25em] text-parchment-dim">
         Real client · 16 weeks
       </p>
     </div>

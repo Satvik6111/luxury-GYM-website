@@ -52,10 +52,14 @@ function ImageComparison({
     const containerRect = (
       event.currentTarget as HTMLElement
     ).getBoundingClientRect();
-    const x =
+
+    const point =
       "touches" in event
-        ? event.touches[0].clientX - containerRect.left
-        : (event as React.MouseEvent).clientX - containerRect.left;
+        ? event.touches[0] ?? event.changedTouches[0]
+        : (event as React.MouseEvent);
+    if (!point) return;
+
+    const x = point.clientX - containerRect.left;
 
     const percentage = Math.min(
       Math.max((x / containerRect.width) * 100, 0),
@@ -65,13 +69,43 @@ function ImageComparison({
     setSliderPosition(percentage);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const stepSize = event.shiftKey ? 10 : 4;
+    let next: number | null = null;
+
+    if (event.key === "ArrowRight" || event.key === "ArrowUp") {
+      next = sliderPosition + stepSize;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
+      next = sliderPosition - stepSize;
+    } else if (event.key === "Home") {
+      next = 0;
+    } else if (event.key === "End") {
+      next = 100;
+    }
+
+    if (next === null) return;
+    event.preventDefault();
+    const clamped = Math.min(100, Math.max(0, next));
+    motionValue.set(clamped);
+    setSliderPosition(clamped);
+  };
+
   return (
     <ImageComparisonContext.Provider
       value={{ sliderPosition, setSliderPosition, motionSliderPosition }}
     >
       <div
+        role="slider"
+        tabIndex={0}
+        aria-label="Drag or use arrow keys to reveal the comparison"
+        aria-orientation="horizontal"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(sliderPosition)}
+        aria-valuetext={`${Math.round(sliderPosition)}% revealed`}
+        onKeyDown={handleKeyDown}
         className={cn(
-          "relative select-none overflow-hidden",
+          "relative select-none overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze-bright",
           enableHover && "cursor-ew-resize",
           className
         )}

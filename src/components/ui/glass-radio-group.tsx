@@ -52,7 +52,7 @@ export function GlassRadioGroup({
             />
             <label
               htmlFor={`${name}-${opt.value}`}
-              className="relative z-[2] flex min-w-0 flex-1 cursor-pointer items-center justify-center px-4 py-3.5 text-center text-[0.68rem] font-medium uppercase tracking-[0.16em] text-parchment-dim transition-colors duration-300 hover:text-parchment sm:px-5 sm:text-[0.72rem]"
+              className="relative z-[2] flex min-w-0 flex-1 cursor-pointer items-center justify-center px-4 py-3.5 text-center text-[0.7rem] font-medium uppercase tracking-[0.16em] text-parchment-dim transition-colors duration-300 hover:text-parchment sm:px-5 sm:text-[0.72rem]"
             >
               {opt.label}
             </label>

@@ -85,7 +85,7 @@ export function TrainerView() {
                       <p className="font-display text-2xl text-parchment">
                         {trainerProfile.name || "The Trainer"}
                       </p>
-                      <p className="mt-1 text-[0.68rem] uppercase tracking-[0.2em] text-bronze">
+                      <p className="mt-1 text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.2em] text-bronze">
                         {trainerProfile.title}
                       </p>
                     </div>
@@ -116,7 +116,7 @@ export function TrainerView() {
                         <span className="font-display text-3xl text-parchment">
                           {c.value}
                         </span>
-                        <span className="mt-3 text-[0.6rem] uppercase leading-snug tracking-[0.14em] text-parchment-dim">
+                        <span className="mt-3 text-[0.7rem] md:text-[0.6rem] uppercase leading-snug tracking-[0.14em] text-parchment-dim">
                           {c.label}
                         </span>
                       </div>
@@ -197,7 +197,7 @@ export function TrainerView() {
                 <Link href="/#consult" className="cursor-pointer">
                   <LeatherButton>Request a Private Consultation</LeatherButton>
                 </Link>
-                <Link href="/results" className="cursor-pointer text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment self-center">
+                <Link href="/results" className="-mx-2 flex min-h-11 cursor-pointer items-center justify-center px-2 text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment">
                   See results
                   <ArrowRight
                     size={13}

@@ -139,7 +139,7 @@ export function ResultsView() {
                         <div className="flex flex-wrap items-center gap-3">
                           <span className="label">{c.id}</span>
                           <span className="h-px w-6 bg-bronze/50" />
-                          <span className="text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim">
+                          <span className="text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.18em] text-parchment-dim">
                             {c.profile}
                           </span>
                         </div>
@@ -154,7 +154,7 @@ export function ResultsView() {
                       <div className="grid w-full grid-cols-2 gap-px overflow-hidden rounded-md border border-hairline bg-hairline md:max-w-md">
                         {c.metrics.map((m) => (
                           <div key={m.label} className="bg-obsidian-deep p-4">
-                            <p className="text-[0.58rem] uppercase tracking-[0.14em] text-parchment-dim">
+                            <p className="text-[0.7rem] md:text-[0.58rem] uppercase tracking-[0.14em] text-parchment-dim">
                               {m.label}
                             </p>
                             <div className="mt-2 flex items-baseline gap-2">
@@ -289,7 +289,7 @@ export function ResultsView() {
                 </Link>
                 <Link
                   href="/trainer"
-                  className="cursor-pointer self-center text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment"
+                  className="-mx-2 flex min-h-11 cursor-pointer items-center justify-center px-2 text-[0.7rem] md:text-[0.68rem] uppercase tracking-[0.2em] text-parchment-dim transition-colors hover:text-parchment"
                 >
                   Meet the trainer
                   <ArrowRight

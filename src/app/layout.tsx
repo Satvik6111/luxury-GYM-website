@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { MobileCta } from "@/components/mobile-cta";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -44,6 +45,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: "#0b0c0e",
   colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({
@@ -75,6 +81,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <MobileCta />
       </body>
     </html>
   );
